@@ -21,9 +21,10 @@
   (list
    :route
    (lambda (item)
-    (setf (hb/item-route item)
-          (let ((mustache-key-type 'keyword))
-            (mustache-render route (hb/item-meta item)))))))
+     (let* ((mustache-key-type 'keyword)
+            (route (mustache-render route (hb/item-meta item))))
+       (setf (hb/item-route item) route)
+       (ht-set! (hb/item-meta item) :route route)))))
 
 (defun hb/mustache-transform (item)
   (let ((payload (substring-no-properties (hb/item-payload item))))
