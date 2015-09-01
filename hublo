@@ -1,0 +1,8 @@
+#!/usr/bin/emacs --script
+
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
+(add-to-list 'load-path (expand-file-name "./src"))
+(load "hublo.el")
+(hb/run-script)
