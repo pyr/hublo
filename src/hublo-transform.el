@@ -27,15 +27,21 @@
 ;; =============================
 
 (defun hb/write-content (route content)
-  (let ((full-path (format "%s/%s/index.html"
-                            (hb/config-output-dir *hb/config*)
-                            route)))
-    (make-directory (file-name-directory full-path) t)
+  (let ((path (format "%s/%s" (hb/config-output-dir *hb/config*) route)))
+    (make-directory (file-name-directory path) t)
     (save-excursion
       (let ((cb (current-buffer)))
         (with-temp-buffer
           (insert-string content)
-          (write-file full-path nil))))))
+          (write-file path nil))))))
+
+(defun hb/base-route (item)
+  (let ((route (replace-regexp-in-string
+                (format "^%s" (hb/config-source-dir *hb/config*))
+                ""
+                (hb/item-path item))))
+    (setf (hb/item-route item) route)
+    (ht-set! (hb/item-meta item) :route route)))
 
 (defun hb/base-bootstrap (item)
   (setf (hb/item-payload item) (hb/file->string
@@ -73,10 +79,8 @@
        (ht-set groups groupk (if group (push meta group) (list meta)))))))
 
 (hb/register-transform :noop)
-(hb/register-transform :base
-                       :bootstrap 'hb/base-bootstrap
-                       :publish   'hb/base-publish)
 
 (setq hb/base-transforms (list
                           (list :bootstrap 'hb/base-bootstrap)
+                          (list :route     'hb/base-route)
                           (list :publish   'hb/base-publish)))
