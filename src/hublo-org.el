@@ -19,6 +19,8 @@
     (let ((old-val org-export-show-temporary-export-buffer)
           (bf (current-buffer)))
       (setq org-export-show-temporary-export-buffer nil)
+      (font-lock-mode t)
+      (org-mode)
       (org-html-export-as-html nil nil nil t nil)
       (setq org-export-show-temporary-export-buffer old-val)
       (switch-to-buffer "*Org HTML Export*")
