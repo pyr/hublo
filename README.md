@@ -13,15 +13,17 @@ hublo: the world needed another site generator
 
 (page "/entries/.*"
       (slugify)
-      (route "/entries/{{year}}/{{month}}/{{day}}/{{slug}}")
+      (route "/entries/{{year}}/{{month}}/{{day}}_{{slug}}html")
       (group-with :entries)
       (layout "entry")
       (layout "default"))
 
 (page "/index.mustache"
       (title "spootnik.org some title")
-      (route "/")
+      (route "/index.html")
       (layout "default"))
+
+(page "/static/.*")
 ```
 
 ### Running
