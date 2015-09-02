@@ -3,12 +3,12 @@
 (defun hb/noop ()
   "Shortcut for a no-op run"
   (message "running hublo dry run")
-  (hb/run-phases :bootstrap :metadata :route :content))
+  (hb/run-phases :bootstrap :metadata :route :content :clean))
 
 (defun hb/publish! ()
   "Shortcut for publishing"
   (message "running hublo publish")
-  (hb/run-phases :bootstrap :metadata :route :content :publish))
+  (hb/run-phases :bootstrap :metadata :route :content :publish :clean))
 
 (defun hb/clean! ()
   (message "running hublo clean")
