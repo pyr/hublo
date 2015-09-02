@@ -1,5 +1,5 @@
 (source melpa)
-(depends-on "dash
+(depends-on "dash")
 (depends-on "mustache")
 
 (source org)

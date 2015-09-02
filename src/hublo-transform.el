@@ -43,6 +43,12 @@
     (setf (hb/item-route item) route)
     (ht-set! (hb/item-meta item) :route route)))
 
+(defun hb/base-clean (item)
+  (setq *hb/handlers* nil)
+  (setq *hb/transforms* (ht-create))
+  (setq *hb/pages* nil)
+  (setq *hb/config* (hb/default-config)))
+
 (defun hb/base-bootstrap (item)
   (setf (hb/item-payload item) (hb/file->string
                                 (hb/item-path item))))
@@ -80,7 +86,7 @@
 
 (hb/register-transform :noop)
 
-(setq hb/base-transforms (list
-                          (list :bootstrap 'hb/base-bootstrap)
-                          (list :route     'hb/base-route)
-                          (list :publish   'hb/base-publish)))
+(setq hb/base-transforms '((:bootstrap hb/base-bootstrap)
+                           (:route     hb/base-route)
+                           (:publish   hb/base-publish)
+                           (:clean     hb/base-clean)))
