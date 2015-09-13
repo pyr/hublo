@@ -29,6 +29,6 @@
              ((symbol-function 'route)      #'hb/mustache-route-transform)
              ((symbol-function 'title)      #'hb/dsl-title)
              ((symbol-function 'slugify)    #'hb/slug-transform)
-             ((symbol-function 'meta)       #'hb/metadata-transform)
+             ((symbol-function 'metadata)   #'hb/metadata-transform)
              ((symbol-function 'group-with) #'hb/group-transform))
      (progn ,@body)))

@@ -82,7 +82,7 @@
      (let* ((groups (ht-get (hb/config-context *hb/config*) :groups))
             (group  (ht-get groups groupk))
             (meta   (hb/item-meta item)))
-       (ht-set groups groupk (if group (push meta group) (list meta)))))))
+       (ht-set groups groupk (if group (add-to-list 'group meta t) (list meta)))))))
 
 (hb/register-transform :noop)
 
