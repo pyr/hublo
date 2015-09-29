@@ -34,4 +34,4 @@
                              (hb/item-meta item))))))
 
 (hb/register-transform :mustache
-                       :content 'hb/mustache-transform)
+                       :augment 'hb/mustache-transform)
