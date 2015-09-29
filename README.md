@@ -42,7 +42,7 @@ hublo phases <phase-list>
 
 ### Philosophy
 
-Hublo privdes a way to build a site by publishing pages in different *phases*.
+Hublo provides a way to build a site by publishing pages in different *phases*.
 A phase is a barrier that must be reached by all pages before advancing to the next.
 Each hublo command consists of a list of phases to run through, some shortcuts
 are defined in `hublo-cli.el`.
