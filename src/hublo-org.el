@@ -36,7 +36,8 @@
 (defun hb/org-content (item)
   (let* ((content (hb/file->string (hb/item-path item)))
          (payload (hb/org-publish content)))
-    (setf (hb/item-payload item) payload)))
+    (setf (hb/item-payload item) payload)
+    (ht-set (hb/item-meta item) :content payload)))
 
 (hb/register-transform :org
                        :metadata 'hb/org-metadata
