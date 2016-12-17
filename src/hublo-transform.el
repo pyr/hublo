@@ -59,6 +59,11 @@
 (defun hb/metadata-transform (k v)
   (list :metadata (lambda (item) (ht-set (hb/item-meta item) k v))))
 
+(defun hb/truncate-title-elems (title)
+  (let* ((title-seq (split-string title " "))
+	 (title-len (min (length title-seq) 6)))
+    (subseq title-seq 0 title-len)))
+
 (defun hb/slug-transform ()
   (list
    :metadata
@@ -72,7 +77,7 @@
                    'identity
                    (remove-if-not
                     'identity
-                    (subseq (split-string (downcase title) " ") 0 6))
+		    (hb/truncate-title-elems (downcase title)))
                    "-"))))))))
 
 (defun hb/group-transform (groupk)
